@@ -1,0 +1,56 @@
+#%RAML 1.0
+title: Purgatory
+version: v1
+baseUri: http://purgatory.kickipedia.de
+
+/session:
+  post:
+    body:
+      application/json:
+        example: |
+          {
+            "username": "username",
+            "password": "password"
+          }
+        type:
+          - object
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                  "status": "success",
+                  "token": "4g730d897245rg4qrg"
+              }
+
+            type:
+              - object
+      403:
+        body:
+          application/json:
+            example: |
+                {
+                  "status": "error",
+                  "errorMessage": "authentication failed"
+                }
+
+            type:
+              - object
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            type:
+              - object
+            example: |
+              {
+                "status": "success"
+              }
+    headers:
+      Authorization:
+        type:
+          - string
+
+        example: Session Token
